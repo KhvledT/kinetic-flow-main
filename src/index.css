@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 83 100% 59%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 16 100% 60%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 83 100% 59%;
+
+    --radius: 0.75rem;
+
+    /* Custom fitness colors */
+    --lime: 83 100% 59%;
+    --coral: 16 100% 60%;
+    --energy: 45 100% 55%;
+    --success: 142 76% 45%;
+    --glass: 0 0% 100% / 0.05;
+    --glass-border: 0 0% 100% / 0.1;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(83 100% 59%) 0%, hsl(45 100% 55%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(16 100% 60%) 0%, hsl(350 100% 60%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 7%) 0%, hsl(0 0% 4%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 10%) 0%, hsl(0 0% 6%) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 60px -15px hsl(83 100% 59% / 0.3);
+    --shadow-card: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 83 100% 59%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 83 100% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .energy-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .workout-card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl;
+  }
+
+  .nav-link {
+    @apply relative text-muted-foreground hover:text-foreground transition-colors duration-200;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .stat-card {
+    @apply glass-card p-6 relative overflow-hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-10;
+    background: var(--gradient-primary);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
